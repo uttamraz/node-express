@@ -1,0 +1,799 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Trip Management API's",
+        "description": "",
+        "version": "v2"
+    },
+    "servers": [
+        {
+            "url": "https://citycargoapi.upaya.com.np/api/v1/trip"
+        }
+    ],
+    "paths": {
+        "/get-token": {
+            "post": {
+                "tags": [
+                    "Trip Management"
+                ],
+                "summary": "Get Token\n",
+                "requestBody": {
+                    "description": "Get Token request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TokenRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "create"
+            }
+        },
+        "/trip-quote": {
+            "post": {
+                "tags": [
+                    "Trip Management"
+                ],
+                "summary": "Get the pricing info and feasibility of the trips\n",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Trip Create request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TripQuoteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TripQuoteResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "create"
+            }
+        },
+        "/trip-create": {
+            "post": {
+                "tags": [
+                    "Trip Management"
+                ],
+                "summary": "Trip Creation\n",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Trip Create request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TripRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TripResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "create"
+            }
+        },
+        "/trip-details/{trip_id}": {
+            "get": {
+                "tags": [
+                    "Trip Management"
+                ],
+                "summary": "Get the details of individual trip\n",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "trip_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TripResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trip-status/{trip_id}": {
+            "get": {
+                "tags": [
+                    "Trip Management"
+                ],
+                "summary": "Get the status of individual trip\n",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "trip_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TripStatusResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trip-cancel": {
+            "post": {
+                "tags": [
+                    "Trip Management"
+                ],
+                "summary": "Trip Cancellation (Trip Cancellation is only applicable before driver assigned)\n",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Get Token request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TripCancelRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TripCancelResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        },
+        "schemas": {
+            "TokenRequest": {
+                "type": "object",
+                "properties": {
+                    "client_key": {
+                        "type": "string",
+                        "example": "bd40d510-da26-4b0d-ab1f-db3c4de02fe7"
+                    },
+                    "secret_key": {
+                        "type": "string",
+                        "example": "9d8fdf36-e5c5-4009-aa09-f9d839498703"
+                    }
+                }
+            },
+            "TokenResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "token": {
+                                "type": "string",
+                                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                            }
+                        }
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Success"
+                    }
+                }
+            },
+            "TripQuoteRequest": {
+                "type": "object",
+                "properties": {
+                    "schedule_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "delivery_type": {
+                        "type": "string",
+                        "example": "beverage"
+                    },
+                    "coordinates": {
+                        "items": {
+                            "type": "array",
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/Origin"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/Destination"
+                                }
+                            ]
+                        }
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "vehicle_type": {
+                        "type": "string",
+                        "example": "omni"
+                    },
+                    "cash_handling": {
+                        "type": "boolean"
+                    },
+                    "cash_amount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 480
+                    }
+                }
+            },
+            "TripQuoteResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "vehicle_price": {
+                                "type": "number",
+                                "example": 150.00
+                            },
+                            "cash_handling_price": {
+                                "type": "number",
+                                "example": 300.00
+                            },
+                            "total_price": {
+                                "type": "number",
+                                "example": 450.00
+                            }
+                        }
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Success"
+                    }
+                }
+            },
+            "TripRequest": {
+                "type": "object",
+                "properties": {
+                    "schedule_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "delivery_type": {
+                        "type": "string",
+                        "example": "beverage"
+                    },
+                    "coordinates": {
+                        "items": {
+                            "type": "array",
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/Origin"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/Destination"
+                                }
+                            ]
+                        }
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "vehicle_type": {
+                        "type": "string",
+                        "example": "omni"
+                    },
+                    "item_list": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/Item1"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/Item2"
+                                }
+                            ]
+                        }
+                    },
+                    "cash_handling": {
+                        "type": "boolean"
+                    },
+                    "cash_amount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 480
+                    },
+                    "remarks": {
+                        "type": "string",
+                        "example": "Please come near Prabhu bank"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "TripResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/TripData"
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Success"
+                    }
+                }
+            },
+            "TripData": {
+                "type": "object",
+                "properties": {
+                    "trip_id": {
+                        "type": "string",
+                        "example": "bd40d510-da26-4b0d-ab1f-db3c4de02fe7"
+                    },
+                    "schedule_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "price": {
+                        "type": "object",
+                        "properties": {
+                            "vehicle_price": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 100
+                            },
+                            "cash_handling_price": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 500
+                            },
+                            "total_price": {
+                                "type": "number",
+                                "format": "float",
+                                "example": 600
+                            }
+                        }
+                    },
+                    "delivery_type": {
+                        "type": "string",
+                        "example": "beverage"
+                    },
+                    "coordinates": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/Origin"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/Destination"
+                                }
+                            ]
+                        }
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "vehicle_type": {
+                        "type": "string",
+                        "example": "omni"
+                    },
+                    "item_list": {
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/Item1"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/Item2"
+                                }
+                            ]
+                        }
+                    },
+                    "cash_handling": {
+                        "type": "boolean"
+                    },
+                    "cash_amount": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 480
+                    },
+                    "remarks": {
+                        "type": "string",
+                        "example": "Please come near Prabhu bank"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Origin": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 48.2
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 48.2
+                    }
+                }
+            },
+            "Destination": {
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 84.2
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 84.2
+                    }
+                }
+            },
+            "Item1": {
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "type": "string",
+                        "example": "Id card"
+                    },
+                    "qty": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 4
+                    }
+                }
+            },
+            "Item2": {
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "type": "string",
+                        "example": "Notebook"
+                    },
+                    "qty": {
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 10
+                    }
+                }
+            },
+            "TripCancelRequest": {
+                "type": "object",
+                "properties": {
+                    "trip_id": {
+                        "type": "string",
+                        "example": "bd40d510-da26-4b0d-ab1f-db3c4de02fe7"
+                    }
+                }
+            },
+            "TripCancelResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "trip_id": {
+                                "type": "string",
+                                "example": "bd40d510-da26-4b0d-ab1f-db3c4de02fe7"
+                            }
+                        }
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Success"
+                    }
+                }
+            },
+            "TripStatusResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "trip_id": {
+                                "type": "string",
+                                "example": "bd40d510-da26-4b0d-ab1f-db3c4de02fe7"
+                            },
+                            "trip_status": {
+                                "type": "string",
+                                "example": "Driver Assigned"
+                            },
+                            "driver_info": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Driver Name"
+                                    },
+                                    "contact_number": {
+                                        "type": "string",
+                                        "example": "9841xxxxxxx"
+                                    },
+                                    "vehicle_number": {
+                                        "type": "string",
+                                        "example": "Ba 11 Pa 205"
+                                    },
+                                    "lat": {
+                                        "type": "number",
+                                        "example": 27.6636478
+                                    },
+                                    "lng": {
+                                        "type": "number",
+                                        "example": 85.3181451
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Success"
+                    }
+                }
+            },
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {}
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Error"
+                    }
+                }
+            },
+            "UnauthorizedResponse": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {}
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                    }
+                }
+            },
+            "Success": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "example": 200
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Success"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "example": 500
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Internal Server Error"
+                    }
+                }
+            },
+            "Unauthorized": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "example": 401
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Bad Request"
+                    }
+                }
+            }
+        }
+    }
+}
